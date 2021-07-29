@@ -11,6 +11,7 @@
     "babel-preset-stage-0": "^6.3.13",
     "ldapjs": "^1.0.0",
     "nconf": "^0.8.2",
+    "path": "^0.12.7",
     "superagent": "^6.1.0",
     "winston": "^2.1.1"
   },
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "babel-preset-env": "^1.7.0",
     "eslint": "^7.31.0",
     "eslint-plugin-babel": "^3.0.0"
   },
