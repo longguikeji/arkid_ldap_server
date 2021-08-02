@@ -3,7 +3,7 @@ var client = ldap.createClient({
   url: 'ldap://127.0.0.1:1389'
 });
 
-client.bind('CN=admin@fabrikam.com,OU=Username-Password-Authentication', 'MyPassword', function(err) {
+client.bind('CN=admin,OU=admin', 'admin', function(err) {
   if (err) {
     console.log('Bind Error:', JSON.stringify(err, null, 2));
     return client.unbind(function(err) {
