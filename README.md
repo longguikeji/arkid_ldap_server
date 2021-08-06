@@ -17,5 +17,5 @@ npm install
 
 - 启动服务
 ```
-babel-node --presets env server.js
+babel-node --presets env server.ts
 ```
