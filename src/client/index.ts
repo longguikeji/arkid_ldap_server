@@ -5,8 +5,6 @@ class ArkidClient {
 
   private instance: AxiosInstance
 
-  private token: string = ''
-
   constructor(domain: string) {
     this.instance = axios.create({
       baseURL: domain,
@@ -48,13 +46,6 @@ class ArkidClient {
       }
     )
   }
-
-  async verifyToken() {
-    return await this.instance.post('v1/user/token/', {
-      token: this.token
-    })
-  }
-
 }
 
 export default ArkidClient

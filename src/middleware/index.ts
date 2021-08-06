@@ -1,5 +1,5 @@
-import requireAdministrator from './requireAdministrator/index'
+import requireAuthenticated from './requireAuthenticated/index'
 
 export {
-  requireAdministrator
+  requireAuthenticated
 }

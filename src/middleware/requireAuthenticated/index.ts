@@ -1,7 +1,7 @@
 import ldap from 'ldapjs'
 import logger from '../../logger'
 
-const requireAdministrator = (req, res, next) => {
+const requireAuthenticated = (req, res, next) => {
   if (
     req.connection.ldap.bindDN == null &&
     req.connection.ldap.bindDN == "" &&
@@ -13,4 +13,4 @@ const requireAdministrator = (req, res, next) => {
   return next()
 }
 
-export default requireAdministrator
+export default requireAuthenticated

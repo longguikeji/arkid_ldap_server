@@ -1,6 +1,6 @@
 import logger from './logger'
 import routes from './routes'
-import { requireAdministrator } from './middleware'
+import { requireAuthenticated } from './middleware'
 
 const path = require('path')
 const ldap = require('ldapjs')
@@ -16,7 +16,7 @@ const server = ldap.createServer();
 
 server.bind('', routes.bind(nconf.get('ARKID_DOMAIN')))
 
-server.search('', requireAdministrator, routes.search(nconf.get('ARKID_DOMAIN')))
+server.search('', requireAuthenticated, routes.search(nconf.get('ARKID_DOMAIN')))
 
 server.listen(nconf.get('LDAP_PORT'), () => {
   logger.info(`LDAP server listening on: ${server.url}`)
