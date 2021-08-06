@@ -1,0 +1,5 @@
+{
+  "plugins": [],
+  "presets": [],
+  "ignore": "./node_modules"
+}
