@@ -1,13 +1,4 @@
 {
-  "ARKID_DOMAIN": "http://localhost:8000/api/",
-  "LDAP_PORT": 1389,
-  "USER_ATTRIBUTES_MAPPING": {
-    "uid": "uuid"
-  },
-  "GROUP_ATTRIBUTES_MAPPING": {
-    "uid": "uuid"
-  },
-  "DEPARTMENT_ATTRIBUTES_MAPPING": {
-    "uid": "uuid"
-  }
+  "ARKID_DOMAIN": "http://172.17.0.1:8000/api/",
+  "LDAP_PORT": 1389
 }
