@@ -16,14 +16,14 @@ client.bind('uid=guancy,ou=people, o=392fbf1b9931492483d84c7694147e61, dc=longgu
   console.log('Bind success.');
 
   var opts = {
-    filter: '(username=guancy)',
+    filter: '(cn=admin)',
     scope: 'sub',
     attributes: ['dn', 'sn', 'cn']
   };
 
   console.log(`Searching for: ${JSON.stringify(opts, null, 2)}`);
 
-  client.search(`ou=people, o=392fbf1b9931492483d84c7694147e61`, opts, function (err, res) {
+  client.search(`ou=people`, opts, function (err, res) {
     res.on('searchEntry', function (entry) {
       console.log('Found: ' + JSON.stringify(entry.object));
     });
