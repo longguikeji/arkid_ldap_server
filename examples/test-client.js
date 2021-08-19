@@ -3,7 +3,7 @@ var client = ldap.createClient({
   url: 'ldap://127.0.0.1:1389'
 });
 
-client.bind('uid=guancy,ou=people, o=392fbf1b9931492483d84c7694147e61, dc=longguikeji, dc=com', 'Guancyxx2021**', function (err) {
+client.bind('cn=admin,ou=people, o=392fbf1b9931492483d84c7694147e61, dc=longguikeji, dc=com', 'admin', function (err) {
   if (err) {
     console.log('Bind Error:', JSON.stringify(err, null, 2));
     return client.unbind(function (err) {
