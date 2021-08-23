@@ -25,6 +25,7 @@ const authenticate = (domain: string) => {
 
     await client.signIn(parsedName[1], req.credentials).then((response: any) => {
       logger.info(`Bind success for ${req.dn.toString()}`);
+      logger.debug(response);
       logger.debug(response.data.error);
       if (!response.data.error) {
         return next(new ldap.InvalidCredentialsError());
