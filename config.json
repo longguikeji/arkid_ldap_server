@@ -1,13 +1,4 @@
 {
   "ARKID_DOMAIN": "http://arkid.vtwo.longguikeji.com/api/",
-  "LDAP_PORT": 1389,
-  "USER_ATTRIBUTES_MAPPING": {
-    "uid": "uuid"
-  },
-  "GROUP_ATTRIBUTES_MAPPING": {
-    "uid": "uuid"
-  },
-  "DEPARTMENT_ATTRIBUTES_MAPPING": {
-    "uid": "uuid"
-  }
+  "LDAP_PORT": 1389
 }
