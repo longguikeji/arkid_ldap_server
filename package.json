@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node index.ts",
     "statr:dev": "nodemon",
-    "build-ts": "tsc"
+    "build-ts": "tsc",
+    "example": "ts-node ./examples/test-client.ts"
   },
   "keywords": [
     "arkid",
@@ -18,10 +19,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/ldapjs": "^2.2.0",
+    "@types/ldapjs": "^1.0.2",
     "acorn": "^8.4.1",
     "axios": "^0.21.1",
-    "ldapjs": "^2.3.1",
+    "ldapjs": "^1.0.2",
     "nconf": "^0.8.2",
     "nodemon": "^2.0.12",
     "ts-node": "^10.2.1",

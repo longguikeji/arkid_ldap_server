@@ -31,6 +31,7 @@ class ArkidClient {
       username,
       password
     });
+    return res;
   };
 
 };
