@@ -18,7 +18,7 @@ const search = (domain: string) => {
     logger.debug(params);
     params["dn"] = req.dn.toString();
     if(!params["dn"]){
-      logger.debug("params['dn']");
+      logger.debug(req.connection.tenant_uuid);
       params["dn"] = `o=${req.connection.tenant_uuid},dc=longguikeji,dc=com`;
     };
 

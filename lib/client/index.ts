@@ -16,7 +16,7 @@ class ArkidClient {
   };
 
   async search(tenant_id: string, params: any, token: string) {
-    const res = await this._instance.get(`v1/tenant/${tenant_id}/ldap/search/`, {
+    const res = await this._instance.get(`/api/v1/ldap/search/`, {
       params,
       headers: {
         'Authorization': `Token ${token}`
@@ -25,9 +25,9 @@ class ArkidClient {
     return res;
   };
 
-  async signIn(username: string, password: string) {
+  async signIn(tenant_id: string, username: string, password: string) {
     logger.debug("SIGNIN", username, password);
-    const res = await this._instance.post('v1/login/', {
+    const res = await this._instance.post(`/api/v1/ldap/login/`, {
       username,
       password
     });
