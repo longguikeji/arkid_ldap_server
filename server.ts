@@ -17,7 +17,7 @@ nconf
 logger.info('Starting LDAP endpoint for Auth...');
 
 const server = ldap.createServer();
-server.bind('', authenticate(nconf.get('ARKID_DOMAIN')));
+server.bind('', authenticate(nconf.get('ARKID_DOMAIN'),nconf.get('BASE_DN')));
 server.search('', requireAdministrator, search(nconf.get('ARKID_DOMAIN')));
 server.listen(nconf.get('LDAP_PORT'), () => {
   logger.info(`LDAP server listening on: ${server.url}`);

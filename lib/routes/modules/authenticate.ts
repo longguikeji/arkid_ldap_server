@@ -11,19 +11,19 @@ interface IAuthenticateRequest {
   connection: any
 };
 
-const authenticate = (domain: string) => {
+const authenticate = (domain: string, BASE_DN:string) => {
 
   const client = new ArkidClient(domain);
 
   const cb = async (req: IAuthenticateRequest, res: any, next: Function) => {
-    const parsedName = req.dn.toString().match(/cn=(.*), ou=(.*), o=(.*), dc=longguikeji, dc=com/);
+    const parsedName = req.dn.toString().match(`cn=(.*), ou=(.*), (.*)${BASE_DN}`);
     if (!parsedName || parsedName.length != 4) {
       logger.debug(parsedName)
-      logger.error(`The username '${req.dn.toString()}' does not match 'cn=username,ou=people, o=TENANT_ID, dc=longguikeji, dc=com'`);
-      return next(new ldap.InvalidDnSyntaxError(`The username '${req.dn.toString()}' does not match 'cn=username,ou=people, o=TENANT_ID, dc=longguikeji, dc=com'`));
+      logger.error(`The username '${req.dn.toString()}' does not match 'cn=username,ou=people, [o=TENANT_ID], ${BASE_DN}'`);
+      return next(new ldap.InvalidDnSyntaxError(`The username '${req.dn.toString()}' does not match 'cn=username,ou=people, [o=TENANT_ID], ${BASE_DN}'`));
     };
 
-    await client.signIn(parsedName[1], req.credentials).then((response: any) => {
+    await client.signIn(parsedName[3],parsedName[1], req.credentials).then((response: any) => {
       logger.info(`Bind success for ${req.dn.toString()}`);
       logger.debug(`Reponse Content ${response}`);
       logger.debug(response.data?.error);
