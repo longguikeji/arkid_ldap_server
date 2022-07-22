@@ -16,8 +16,10 @@ class ArkidClient {
   };
 
   async search(tenant_id: string, params: any, token: string) {
-    const res = await this._instance.get(`/api/v1/ldap/search/`, {
+    const res = await this._instance.post(
+      `/api/v1/tenant/${tenant_id}/com_longgui_app_protocol_ldapserver/search/`,
       params,
+      {
       headers: {
         'Authorization': `Token ${token}`
       }
@@ -25,11 +27,12 @@ class ArkidClient {
     return res;
   };
 
-  async signIn(tenant_id: string, username: string, password: string) {
+  async signIn(tenant_id: string, username: string, password: string, base_dn: string) {
     logger.debug("SIGNIN", username, password);
-    const res = await this._instance.post(`/api/v1/ldap/login/`, {
-      username,
-      password
+    const res = await this._instance.post(`/api/v1/tenant/${tenant_id}/com_longgui_app_protocol_ldapserver/login/`, {
+      username:username,
+      password:password,
+      basedn:base_dn
     });
     return res;
   };

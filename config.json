@@ -1,5 +1,4 @@
 {
-  "ARKID_DOMAIN": "http://arkid.vtwo.longguikeji.com/api/",
-  "LDAP_PORT": 1389,
-  "BASE_DN": "dc=longguikeji, dc=com"
+  "ARKID_DOMAIN": "http://localhost:8000",
+  "LDAP_PORT": 1389
 }

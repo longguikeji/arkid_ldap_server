@@ -4,7 +4,7 @@ const client = ldap.createClient({
   url: 'ldap://127.0.0.1:1389'
 });
 
-client.bind('cn=admin,ou=people,dc=longguikeji, dc=com', 'admin', function (err) {
+client.bind('cn=admin,ou=people,o=d97c8b073da8407a9b232843b52b08f5,dc=longguikeji, dc=com', 'admin', function (err) {
   if (err) {
     console.log('Bind Error:', JSON.stringify(err, null, 2));
     return client.unbind(function (err) {

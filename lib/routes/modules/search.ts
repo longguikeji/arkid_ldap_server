@@ -19,17 +19,18 @@ const search = (domain: string) => {
     params["dn"] = req.dn.toString();
     if(!params["dn"]){
       logger.debug(req.connection.tenant_uuid);
-      params["dn"] = `o=${req.connection.tenant_uuid},dc=longguikeji,dc=com`;
+      params["dn"] = `${req.connection.base_dn}`;
     };
 
     params["scope"] = req.scope;
     params["attributes"] = req.attributes;
 
-    await client.search(req.connection.tenant_uuid, params, req.connection.user_data).then((response: any) => {
-      logger.debug(response.data);
-      response.data.results.forEach(item => {
+    await client.search(req.connection.tenant_uuid, params, req.connection.token).then((response: any) => {
+      logger.debug(response.data.data);
+      response.data.data.forEach(item => {
           logger.debug(item);
-          res.send(item);
+          if (req.filter.matches(item.attributes))
+            res.send(item);
         }
       );
       logger.debug(response.data);
