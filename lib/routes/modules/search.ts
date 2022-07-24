@@ -24,6 +24,7 @@ const search = (domain: string) => {
 
     params["scope"] = req.scope;
     params["attributes"] = req.attributes;
+    logger.debug(req.connection.token);
 
     await client.search(req.connection.tenant_uuid, params, req.connection.token).then((response: any) => {
       logger.debug(response.data.data);

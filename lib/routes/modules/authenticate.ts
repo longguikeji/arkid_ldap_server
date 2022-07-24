@@ -25,14 +25,14 @@ const authenticate = (domain: string) => {
 
     await client.signIn(parsedName[2],parsedName[1], req.credentials,parsedName[3]).then((response: any) => {
       logger.info(`Bind success for ${req.dn.toString()}`);
-      logger.debug(`Reponse Content ${response}`);
+      logger.debug(`Reponse Content ${response.data.data}`);
       logger.debug(response.data?.error);
       if (!response.data?.error) {
         return next(new ldap.InvalidCredentialsError());
       };
-      logger.info(response.data);
+      logger.info(response.data.data.token);
       res.end();
-      req.connection.token = response.data.token;
+      req.connection.token = response.data.data.token;
       req.connection.tenant_uuid = parsedName[2];
       req.connection.base_dn = parsedName[3];
       return next();
