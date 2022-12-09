@@ -28,7 +28,7 @@ const search = (domain: string) => {
 
     await client.search(req.connection.tenant_uuid, params, req.connection.token).then((response: any) => {
       logger.debug(response.data.data);
-      response.data.data.forEach(item => {
+      (response.data.data || []).forEach(item => {
           logger.debug(item);
           if (req.filter.matches(item.attributes))
             res.send(item);
