@@ -37,6 +37,40 @@ class ArkidClient {
     return res;
   };
 
+
+  async search_tenant(tenant_id: string, params: any, token: string){
+    const res = await this._instance.post(
+      `/api/v1/tenant/${tenant_id}/com_longgui_app_protocol_ldapserver/tenant_search/`,
+      params,
+      {
+      headers: {
+        'Authorization': `Token ${token}`
+      }
+    });
+    return res;
+  }
+
+  async find_tenant(tenant_id: string, token: string){
+    const res = await this._instance.get(
+      `/api/v1/tenant/${tenant_id}/com_longgui_app_protocol_ldapserver/find_tenant/`,
+      {
+      headers: {
+        'Authorization': `Token ${token}`
+      }
+    });
+    return res;
+  }
+
+  async find_tenant_users(tenant_id: string, token: string){
+    const res = await this._instance.get(
+      `/api/v1/tenant/${tenant_id}/com_longgui_app_protocol_ldapserver/find_tenant_users/`,
+      {
+      headers: {
+        'Authorization': `Token ${token}`
+      }
+    });
+    return res;
+  }
 };
 
 export default ArkidClient;
