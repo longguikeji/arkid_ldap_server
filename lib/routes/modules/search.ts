@@ -31,7 +31,7 @@ function item_of_tenant(tenant: any, base_dn: string) {
   return {
     dn: `o=${tenant.id}, ${base_dn}`,
     attributes: {
-      objectclass: ["tenant","top","container"],
+      objectclass: ["container"],
       name: tenant.name,
       slug: tenant.slug,
       hassubordinates: true,
@@ -56,7 +56,7 @@ function matches_item(req, res, items) {
   items.forEach((item) => {
     if (req.filter.matches(item.attributes)) {
       res.send(item);
-      logger.debug("send", item);
+      logger.debug("111, send", item);
     }
   });
 }
@@ -100,6 +100,7 @@ const search = (domain: string) => {
             attributes: {
               objectclass: ["top", "root", "domain"],
               hassubordinates: true,
+              subschemaSubentry: 'dc=longguikeji, dc=com'
             },
           });
           break;
@@ -118,7 +119,7 @@ const search = (domain: string) => {
           } else if (search_key[1] === "group") {
           }
         } else if (search_key[0] === "o") {
-          client
+          await client
             .find_tenant(req.connection.tenant_uuid, req.connection.token)
             .then((response) => {
               const item = item_of_tenant(
@@ -135,6 +136,7 @@ const search = (domain: string) => {
             attributes: {
               objectclass: ["top", "root", "domain"],
               hassubordinates: true,
+              subschemaSubentry: 'cn=schema'
             },
           });
         } else {
@@ -158,7 +160,7 @@ const search = (domain: string) => {
             break;
           case "ou":
             if (one_search_key[1] === "people") {
-              client
+              await client
                 .find_tenant_users(
                   req.connection.tenant_uuid,
                   req.connection.token
@@ -178,6 +180,8 @@ const search = (domain: string) => {
             break;
           case "dc":
             if(one_search_key[1] === "com"){
+              logger.debug("send",`${req.connection.base_dn.toString()}`)
+
               res.send({
                 dn: `${req.connection.base_dn.toString()}`,
                 attributes: {
@@ -186,7 +190,7 @@ const search = (domain: string) => {
                 },
               });
             }else{
-              client
+              await client
               .search_tenant(req.connection.tenant_uuid, params, req.connection.token)
               .then((response) => {
                 response.data.data.forEach((item) => {
