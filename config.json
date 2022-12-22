@@ -1,4 +1,4 @@
 {
-  "ARKID_DOMAIN": "http://localhost:8000",
-  "LDAP_PORT": 1389
+  "ARKID_DOMAIN": "http://arkid-be:80",
+  "LDAP_PORT": 11389
 }
